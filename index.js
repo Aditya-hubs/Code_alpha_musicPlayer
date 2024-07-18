@@ -2,39 +2,53 @@ var currentIndex = 1;
 var audio;
 var updateInterval;
 
-
 $("#ctrl").click(function() {
     playpause();
 });
 
-
 function playpause() {
     if ($("#ctrl").hasClass("fa-pause")) {
-        $("#ctrl").removeClass("fa-pause");
-        $("#ctrl").addClass("fa-play");
+        $("#ctrl").removeClass("fa-pause").addClass("fa-play");
         pausesong();
     } else {
-        $("#ctrl").removeClass("fa-play");
-        $("#ctrl").addClass("fa-pause");
+        $("#ctrl").removeClass("fa-play").addClass("fa-pause");
         playsong(currentIndex);
     }
 }
 
+function playsong(index) {
+    var songUrl = "songs/" + index + ".mp3";
 
-function playsong(name) {
-    if (audio && audio.src.includes(name)) {
+    if (audio && audio.src === songUrl) {
         audio.play();
     } else {
         if (audio) {
             audio.pause();
         }
-        audio = new Audio("songs/" + name + ".mp3");
+        audio = new Audio(songUrl);
 
         audio.onloadedmetadata = function() {
             $("#progress").attr("max", audio.duration);
         };
 
-        audio.play();
+        audio.onended = function() {
+            if (currentIndex < 5) {
+                currentIndex++;
+            } else {
+                currentIndex = 1;
+            }
+            $("#cvr").attr("src", "images/" + currentIndex + ".png");
+            updateSongInfo();
+            playsong(currentIndex);
+        };
+
+        // audio.onerror = function() {
+        //     console.error("Error loading audio: " + songUrl);
+        // };
+
+        // audio.play().catch(function(error) {
+        //     console.error("Error playing audio: " + error);
+        // });
     }
 
     if (updateInterval) {
@@ -48,7 +62,6 @@ function playsong(name) {
     }, 500);
 }
 
-
 function pausesong() {
     if (audio) {
         audio.pause();
@@ -57,7 +70,6 @@ function pausesong() {
         clearInterval(updateInterval);
     }
 }
-
 
 $("#forward").click(function() {
     if (currentIndex < 5) {
@@ -69,9 +81,7 @@ $("#forward").click(function() {
     $("#cvr").attr("src", "images/" + currentIndex + ".png");
     updateSongInfo();
 
-    if ($("#ctrl").hasClass("fa-pause")) {
-        playsong(currentIndex);
-    }
+    playsong(currentIndex);
 });
 
 $("#backward").click(function() {
@@ -84,11 +94,8 @@ $("#backward").click(function() {
     $("#cvr").attr("src", "images/" + currentIndex + ".png");
     updateSongInfo();
 
-    if ($("#ctrl").hasClass("fa-pause")) {
-        playsong(currentIndex);
-    }
+    playsong(currentIndex);
 });
-
 
 function updateSongInfo() {
     switch (currentIndex) {
