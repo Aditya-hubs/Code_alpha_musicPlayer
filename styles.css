@@ -1,0 +1,80 @@
+.body{
+    background-image: url(images/Untitled\ design.png);
+    text-align: center;
+}
+.text{
+    color: #dbc1ac;
+    font-size: 1.75rem;
+}
+.navbar{
+    padding-bottom:  3rem;
+    background-color: #1e1e1e;
+   }
+.navbar-brand {
+    font-family: "Poppins";
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 25px;
+}
+.nav-item{
+    padding: 0 18px;
+}
+.nav-link{
+    font-size: 1.75rem;
+    font-family:"montserrat-light" ;
+}
+.hi{
+    writing-mode: vertical-rl;
+    color: #dbc1ac;
+    padding-bottom: 180px;
+    transform: rotate(180deg);
+}
+.img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.rapper{
+    font-size: 2rem;
+    color: wheat;
+    text-align: left;
+    padding-left: 752px;
+}
+.songName{
+    text-align: left;
+    color: #dbc1ac;
+    padding-left: 752px;
+}
+#progress{
+    appearance: none;
+   -webkit-appearance: none;
+   width: 30%; 
+   height: 6px;
+   background: #dbc1ac;
+   border-radius: 4px;
+   cursor: pointer;
+   margin: 10px 0;
+}
+#progress::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background: #dbc1ac;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 8px solid whitesmoke;
+    box-shadow: 0 5px 5px rgba(255, 26, 26, 0.22);
+}
+.fa-solid{
+    color: #dbc1ac;
+    font-size: 5rem;
+}
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.controls div{
+    margin: 20px 30px;
+}
