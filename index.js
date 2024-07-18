@@ -42,13 +42,13 @@ function playsong(index) {
             playsong(currentIndex);
         };
 
-        // audio.onerror = function() {
-        //     console.error("Error loading audio: " + songUrl);
-        // };
+        audio.onerror = function() {
+            console.error("Error loading audio: " + songUrl);
+        };
 
-        // audio.play().catch(function(error) {
-        //     console.error("Error playing audio: " + error);
-        // });
+        audio.play().catch(function(error) {
+            console.error("Error playing audio: " + error);
+        });
     }
 
     if (updateInterval) {
